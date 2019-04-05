@@ -12,9 +12,29 @@ The scope of this is file is to identify the data in the 3 files
  ------|-------|---------
  Try | a | table
 
-id,listing_url,
-scrape_id,last_scraped,
-name,summary,space,description,experiences_offered,neighborhood_overview,notes,transit,access,interaction,house_rules,thumbnail_url,medium_url,picture_url,xl_picture_url,
+1.0. id
+2.0. listing_url
+3.0. Scraping
+ * scrape_id
+ * last_scraped
+
+4.0. Listing Summary
+   4.1 name
+ * summary
+ * space 
+ * description
+ * experiences_offered
+ * neighborhood_overview
+ * notes 
+ * transit
+ * access 
+ * interaction
+ * house_rules 
+ * thumbnail_url 
+ * medium_url 
+ * picture_url 
+ * xl_picture_url
+5. Host Information
 host_id,host_url,host_name,host_since,host_location,host_about,host_response_time,host_response_rate,host_acceptance_rate,host_is_superhost,host_thumbnail_url,host_picture_url,host_neighbourhood,host_listings_count,host_total_listings_count,host_verifications,host_has_profile_pic,host_identity_verified,
 
 street,neighbourhood,neighbourhood_cleansed,neighbourhood_group_cleansed,city,state,zipcode,market,smart_location,country_code,country,latitude,longitude,is_location_exact,
