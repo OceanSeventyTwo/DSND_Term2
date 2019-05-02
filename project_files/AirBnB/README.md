@@ -49,4 +49,4 @@
         4) Created graphs to evaluate the price differences between neighboorhoods
         5) Created graphs to evaluate the price differences throught he year.
 ### 0.3.5 Deployment
-        1) Created a blog (draft) with the results via Medium - 
+        1) Created a blog (draft) with the results via Medium - https://medium.com/@thomas.m.canty/before-you-post-to-host-64415587044a
