@@ -47,15 +47,16 @@ def pca_results_rng(full_dataset, pca,dim_rng,pltpca=False):
     Visualizes the PCA results
     
     input: 
-    full_dataset = is the full dataset that was transformed
-    pca = is the fit_transformed pca
-    dim_rng: list of size to of the first and last dimention to be displayed
+    full_dataset: is the full dataset that was transformed
+    pca: is the fit_transformed pca
+    dim_rng: list of size to of the first and last dimention to be displayed (i.e [1,5] denotes Dimentions 1 through Dimention 5)
+    pltpca (boolean) = Display graph of
     
     '''
     dim_rng[0] = dim_rng[0] - 1  #because first dimention is at index 0
     
     # Dimension indexing
-    dimensions = ['Dimension {}'.format(i) for i in range(1, len(pca.components_)+1)]
+    dimensions = ['Dimension_{}'.format(i) for i in range(1, len(pca.components_)+1)]
     dim = dimensions[dim_rng[0]:dim_rng[1]]
     
     # PCA components
