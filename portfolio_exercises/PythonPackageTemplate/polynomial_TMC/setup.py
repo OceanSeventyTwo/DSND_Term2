@@ -1,4 +1,10 @@
-# TODO: Fill out this file with information about your package
+from setuptools import setup
+
+setup(name='polynomial_TMC',
+      version='0.1',
+      description='polynomial class',
+      packages=['polynomial'],
+      zip_safe=False)
 
 # HINT: Go back to the object-oriented programming lesson "Putting Code on PyPi" and "Exercise: Upload to PyPi"
 
