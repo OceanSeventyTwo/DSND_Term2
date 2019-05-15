@@ -158,8 +158,23 @@ def return_figures():
     # TODO: Make a fifth chart from the data in API_SP.RUR.TOTL_DS2_en_csv_v2_9914824.csv
     # This csv file contains data about the total rural population for various countries over many years
     # Make a bar chart showing the rural population of these countries ['United States', 'China', 'Japan', 'Germany', 'United Kingdom', 'India', 'France', 'Brazil', 'Italy', 'Canada'] in the year 2015.
+    
     graph_five = []
-    df = cleandata('API_SP.RUR.TOTL_DS2_en_csv_v2_9914824.csv')
+    df = cleandata('data\API_SP.RUR.TOTL.ZS_DS2_en_csv_v2_9948275.csv')
+    df.columns = ['country', 'year', 'population']
+    df.sort_values('population', ascending=False, inplace=True)
+    countrylist = ['United States', 'China', 'Japan', 'Germany', 'United Kingdom', 'India', 'France', 'Brazil', 'Italy', 'Canada']
+    for country in countrylist:
+          x_val = df[df['country'] == country].year.tolist()
+          y_val =  df[df['country'] == country].population.tolist()
+          graph_four.append(
+              go.Scatter(
+              x = x_val,
+              y = y_val,
+              mode = 'bar',
+              name = country
+              )
+          )
     
     # HINT: you can use the clean_data() function. You'll need to specify the path to the csv file, and which columns you want to keep. The chart 2 code might help with understanding how to code this.
     
@@ -173,7 +188,7 @@ def return_figures():
     figures.append(dict(data=graph_two, layout=layout_two))
     figures.append(dict(data=graph_three, layout=layout_three))
     figures.append(dict(data=graph_four, layout=layout_four))
-    
+    figures.append(dict(data=graph_five, layout=layout_five))
     # TODO: append the figure five information to the figures list
     
     return figures
