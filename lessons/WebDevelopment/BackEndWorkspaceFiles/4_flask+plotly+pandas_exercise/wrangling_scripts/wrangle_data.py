@@ -1,5 +1,6 @@
 import pandas as pd
 import plotly.graph_objs as go
+import os.path
 
 # TODO: Scroll down to line 157 and set up a fifth visualization for the data dashboard
 
@@ -48,7 +49,7 @@ def return_figures():
   # as a line chart
     
     graph_one = []
-    df = cleandata('data/API_AG.LND.ARBL.HA.PC_DS2_en_csv_v2.csv')
+    df = cleandata(os.path.join('data','API_AG.LND.ARBL.HA.PC_DS2_en_csv_v2.csv'))
     df.columns = ['country','year','hectaresarablelandperperson']
     df.sort_values('hectaresarablelandperperson', ascending=False, inplace=True)
     countrylist = df.country.unique().tolist()
@@ -71,9 +72,9 @@ def return_figures():
                 yaxis = dict(title = 'Hectares'),
                 )
 
-# second chart plots ararble land for 2015 as a bar chart    
+  # second chart plots ararble land for 2015 as a bar chart    
     graph_two = []
-    df = cleandata('data/API_AG.LND.ARBL.HA.PC_DS2_en_csv_v2.csv')
+    df = cleandata(os.path.join('data','API_AG.LND.ARBL.HA.PC_DS2_en_csv_v2.csv'))
     df.columns = ['country','year','hectaresarablelandperperson']
     df.sort_values('hectaresarablelandperperson', ascending=False, inplace=True)
     df = df[df['year'] == 2015] 
@@ -91,9 +92,9 @@ def return_figures():
                 )
 
 
-# third chart plots percent of population that is rural from 1990 to 2015
+  # third chart plots percent of population that is rural from 1990 to 2015
     graph_three = []
-    df = cleandata('data/API_SP.RUR.TOTL.ZS_DS2_en_csv_v2_9948275.csv')
+    df = cleandata(os.path.join('data','API_SP.RUR.TOTL.ZS_DS2_en_csv_v2_9948275.csv'))
     df.columns = ['country', 'year', 'percentrural']
     df.sort_values('percentrural', ascending=False, inplace=True)
     for country in countrylist:
@@ -114,15 +115,15 @@ def return_figures():
                 yaxis = dict(title = 'Percent'),
                 )
     
-# fourth chart shows rural population vs arable land
+  # fourth chart shows rural population vs arable land
     graph_four = []
     
     valuevariables = [str(x) for x in range(1995, 2016)]
     keepcolumns = [str(x) for x in range(1995, 2016)]
     keepcolumns.insert(0, 'Country Name')
 
-    df_one = cleandata('data/API_SP.RUR.TOTL_DS2_en_csv_v2_9914824.csv', keepcolumns, valuevariables)
-    df_two = cleandata('data/API_AG.LND.FRST.K2_DS2_en_csv_v2_9910393.csv', keepcolumns, valuevariables)
+    df_one = cleandata(os.path.join('data','API_SP.RUR.TOTL_DS2_en_csv_v2_9914824.csv'), keepcolumns, valuevariables)
+    df_two = cleandata(os.path.join('data','API_AG.LND.FRST.K2_DS2_en_csv_v2_9910393.csv'), keepcolumns, valuevariables)
     
     df_one.columns = ['country', 'year', 'variable']
     df_two.columns = ['country', 'year', 'variable']
@@ -146,7 +147,7 @@ def return_figures():
           mode = 'markers',
           text = text,
           name = country,
-          textposition = 'top'
+          textposition = 'top center'
           )
       )
 
@@ -160,21 +161,25 @@ def return_figures():
     # Make a bar chart showing the rural population of these countries ['United States', 'China', 'Japan', 'Germany', 'United Kingdom', 'India', 'France', 'Brazil', 'Italy', 'Canada'] in the year 2015.
     
     graph_five = []
-    df = cleandata('data\API_SP.RUR.TOTL.ZS_DS2_en_csv_v2_9948275.csv')
+    df = cleandata(os.path.join('data','API_SP.RUR.TOTL.ZS_DS2_en_csv_v2_9948275.csv'),['Country Name', '2015'], ['2015'])
     df.columns = ['country', 'year', 'population']
     df.sort_values('population', ascending=False, inplace=True)
     countrylist = ['United States', 'China', 'Japan', 'Germany', 'United Kingdom', 'India', 'France', 'Brazil', 'Italy', 'Canada']
     for country in countrylist:
-          x_val = df[df['country'] == country].year.tolist()
-          y_val =  df[df['country'] == country].population.tolist()
-          graph_four.append(
-              go.Scatter(
-              x = x_val,
-              y = y_val,
-              mode = 'bar',
-              name = country
-              )
+      x_val = df[df['country'] == country].year.tolist()
+      y_val =  df[df['country'] == country].population.tolist()
+      graph_five.append(
+          go.Bar(
+          x = x_val,
+          y = y_val,
+          name = country
           )
+      )
+
+    layout_five = dict(title = 'Rural Population in 2015',
+                xaxis = dict(title = 'Country',),
+                yaxis = dict(title = 'Rural Population'))
+
     
     # HINT: you can use the clean_data() function. You'll need to specify the path to the csv file, and which columns you want to keep. The chart 2 code might help with understanding how to code this.
     
